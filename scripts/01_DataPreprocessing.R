@@ -1,6 +1,7 @@
 # load packages 
 library(tidyverse)
 library(readxl)
+library(xlsx)
 
 # load data 
 data <- read_excel("raw_data/QOL_Raw.xlsx")
@@ -187,8 +188,6 @@ emotional_role <- sf36 |>
 
 
 
-
-
 # 8. pain 
 pain <- sf36 |> 
   select(Q21, Q22) |> 
@@ -233,6 +232,9 @@ sf_domains <- sf_domains |>
 # combined data 
 qol_data <- cbind(demographics, sf_domains)
 
-# export the data 
+# export the data as CSV
 write.csv(qol_data, "clean_data/QOL_Clean.csv", row.names = FALSE)
+
+# export the data as Excel
+write.xlsx(qol_data, "clean_data/QOL_Clean.xlsx", row.names = F)
 
